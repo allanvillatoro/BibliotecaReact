@@ -5,11 +5,11 @@ const FormularioLibros = (props) => {
 
   const formik = useFormik({
     initialValues: {
-        id_libro: undefined,
+        id_libro: '',
         titulo: '',
         autor: '',
-        anio: undefined,
-        multapordia: undefined
+        anio: '',
+        multapordia: ''
     },
     onSubmit: values => {
       props.guardar(values);
