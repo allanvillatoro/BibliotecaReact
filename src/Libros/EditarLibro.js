@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import ls from 'local-storage';
 
 function EditarLibro(props){
-    let libro = props.location.state; //recupera del props
+    let libro = props.location.state; //recupera en props lo enviado con this.props.history.push('/EditarLibro',this.state.libros[indice]);
     if (!libro)
       props.history.goBack();
 
