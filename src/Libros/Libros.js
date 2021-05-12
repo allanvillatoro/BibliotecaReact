@@ -1,6 +1,5 @@
 import React from "react";
 import TablaLibros from "./TablaLibros";
-import FormularioLibros from "./FormularioLibros";
 import axios from "axios";
 import ls from 'local-storage';
 
@@ -33,7 +32,8 @@ class Libros extends React.Component {
     this.state = {
       libros: listaLibros,
     };
-    this.guardarLibro = this.guardarLibro.bind(this);
+    this.abrirAgregarLibro = this.abrirAgregarLibro.bind(this);
+    this.abrirEditarLibro = this.abrirEditarLibro.bind(this);
   }
 
  async componentDidMount() {
@@ -54,49 +54,38 @@ class Libros extends React.Component {
     console.log("Recuperando de LocalStorage");
     const lista = ls.get('misLibros');
     if (lista && lista.length > 0) {
-      console.log(lista)
+      //console.log(lista)
       this.setState ({libros: lista})
     }
-  }
-
-  async guardarLibro(libro) {
-    //Con Web API
-    //Usando Async y Await
-    /*try{
-        const respuesta = await axios.post(`https://localhost:44302/api/libros`, libro);
-        if (respuesta.request.status === 201) {
-          this.setState((state, props) => ({
-            libros: state.libros.concat(libro)
-          }));
-          window.alert('Agregado exitosamente');
-        }
-        else{
-          window.alert('Error al agregar');
-        }
-      }
-      catch(e){
-        console.log(e);
-        window.alert('Error al agregar');
-      }*/
-
-    //Sin Web API    
-    this.setState((state, props) => ({
-      libros: state.libros.concat(libro),
-    }));
-    ls.set("misLibros", this.state.libros);
-    console.log("Guardado en LocalStorage");
   }
 
   componentDidUpdate() {
     console.log("componentDidUpdate");
   }
 
+  abrirAgregarLibro(){
+    console.log("abrirAgregarLibro");
+    this.props.history.push('/AgregarLibro');
+  }
+
+  //El id lo recibe cuando se le da al boton del libro en la tabla
+  abrirEditarLibro(id){
+    console.log("editar libro con id = " + id);
+    let indice = this.state.libros.findIndex(libro => libro.id_libro === id );
+    //Carga otra página con ruta /EditarLibro
+    this.props.history.push('/EditarLibro',this.state.libros[indice]);
+  }
+
   render() {
     return (
       <div>
         <br />
-        <FormularioLibros guardar={this.guardarLibro} />
-        <TablaLibros libros={this.state.libros} />
+        <div className="text-right">
+          <button type="button" className="btn btn-primary" onClick={this.abrirAgregarLibro}>
+            Agregar
+          </button>
+        </div>
+        <TablaLibros libros={this.state.libros} abrirEditarLibro={this.abrirEditarLibro} />
       </div>
     );
   }

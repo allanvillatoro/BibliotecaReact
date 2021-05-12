@@ -13,11 +13,12 @@ function TablaLibros (props) {
             <th scope="col">Autor</th>
             <th scope="col">Anio</th>
             <th scope="col">MultaXDía</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
         {libros.map(
-          (libro,index)=><Libro key={libro.id_libro.toString()} valor={libro} indice={index+1}/>)}
+          (libro,index)=><Libro key={libro.id_libro.toString()} indice={index+1} valor={libro} abrirEditarLibro={props.abrirEditarLibro}/>)}
         </tbody>
       </table>
     );

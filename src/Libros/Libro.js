@@ -10,6 +10,7 @@ function Libro(props){
         <td>{book.autor}</td>
         <td>{book.anio}</td>
         <td>{book.multapordia}</td>
+        <td><button type="button" className="btn btn-primary" onClick={(e)=>props.abrirEditarLibro(book.id_libro)}><i className="fa fa-book"></i></button></td>
       </tr>
     );
     return retorno;

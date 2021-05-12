@@ -3,6 +3,8 @@ import Libros from './Libros/Libros';
 import Inicio from './Inicio/Inicio';
 import Alumnos from './Alumnos/Alumnos';
 import Prestamos from './Prestamos/Prestamos';
+import EditarLibro from './Libros/EditarLibro';
+import AgregarLibro from './Libros/AgregarLibro';
 
 import {
   BrowserRouter as Router,
@@ -38,18 +40,12 @@ class App extends React.Component {
           </div>
         </nav>
         <Switch>
-          <Route exact path="/">
-            <Inicio />
-          </Route>
-          <Route path="/Libros">
-            <Libros />
-          </Route>
-          <Route path="/Alumnos">
-            <Alumnos />
-          </Route>
-          <Route path="/Prestamos">
-            <Prestamos />
-          </Route>
+          <Route exact path="/" component={Inicio}/>
+          <Route path="/Libros" component={Libros}/>
+          <Route path="/Alumnos" component={Alumnos} />
+          <Route path="/Prestamos" component={Prestamos}/>
+          <Route path="/EditarLibro" component={EditarLibro}/>
+          <Route path="/AgregarLibro" component={AgregarLibro}/>
         </Switch>
       </Router>
     );
