@@ -37,6 +37,7 @@ function AgregarLibro(props){
         if (lista && lista.length > 0) listaGuardar = lista;
         listaGuardar = listaGuardar.concat(libro);
         ls.set("misLibros", listaGuardar);
+        props.history.goBack(); //Regresa al main
       } else {
         window.alert("Favor ingresar correctamente los datos");
       }
