@@ -32,12 +32,13 @@ function AgregarLibro(props){
         libro.anio > 0 &&
         libro.multapordia >= 0
       ) {
+        let listaGuardar = [];
         let lista = ls.get("misLibros");
-        lista = lista.concat(libro);
-        ls.set("misLibros", lista);
-        props.history.goBack(); //Regresa al main
+        if (lista && lista.length > 0) listaGuardar = lista;
+        listaGuardar = listaGuardar.concat(libro);
+        ls.set("misLibros", listaGuardar);
       } else {
-        window.alert("Favor ingresar los datos");
+        window.alert("Favor ingresar correctamente los datos");
       }
     }
 
